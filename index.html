@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Marbels!!!!!!!</title>
+  <style>
+    body {
+      background-color: rgb(232, 248, 237);
+    }
+
+    .card {
+      float: left;
+      margin: 10px;
+    }
+    h6{
+      color: rgb(2, 2, 96);
+    }
+    .navdiv {
+
+      margin-top: 50px;
+    }
+
+    .sidenav {
+      margin-top: 50px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <button onclick="createuser()" class="btn btn-primary">Create user</button>
+  
+  <button onclick="signin()" class="btn btn-success">Signin</button>
+  
+  <button onclick="logout()" class="btn btn-danger">Logout</button>
+
+  <div class="navdiv">
+    <div class="row">
+      <!-- Racks navbar -->
+      <div class="col-sm-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="rack1" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-home"
+            aria-selected="true" onclick="rack_change('rack1')">Rack1</a>
+          <a class="nav-link" id="rack2" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-profile"
+            aria-selected="false" onclick="rack_change('rack2')">Rack2</a>
+          <a class="nav-link" id="rack3" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages"
+            aria-selected="false" onclick="rack_change('rack3')">Rack3</a>
+          <a class="nav-link" id="rack4" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings"
+            aria-selected="false" onclick="rack_change('rack4')">Rack4</a>
+          <a class="nav-link" id="rack5" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings"
+            aria-selected="false" onclick="rack_change('rack5')">Rack5</a>
+        </div>
+      </div>
+      <!-- Section Navbar -->
+      <div class="col-sm">
+        <a href="add_product.html" class="btn btn-success mr-3" style="float:right">Add product</a>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="section1" data-toggle="tab" href="#nav-section1" role="tab"
+              aria-controls="nav-home" aria-selected="true" onclick="sec_change('section1')">Secton1</a>
+            <a class="nav-item nav-link" id="section2" data-toggle="tab" href="#nav-section2" role="tab"
+              aria-controls="nav-profile" aria-selected="false" onclick="sec_change('section2')">Section2</a>
+            <a class="nav-item nav-link" id="section3" data-toggle="tab" href="#nav-section3" role="tab"
+              aria-controls="nav-contact" aria-selected="false" onclick="sec_change('section3')">Section3</a>
+            <a class="nav-item nav-link" id="section4" data-toggle="tab" href="#nav-section4" role="tab"
+              aria-controls="nav-contact" aria-selected="false" onclick="sec_change('section4')">Section4</a>
+            <a class="nav-item nav-link" id="section5" data-toggle="tab" href="#nav-section5" role="tab"
+              aria-controls="nav-contact" aria-selected="false" onclick="sec_change('section5')">Section5</a>
+          </div>
+        </nav>
+        <!-- Displaying Marbles data through javascript -->
+        <div id="dispay-data"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 ></h6>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Script tags for Firebase.js files -->
+  <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js" type="module"></script>
+
+  <!-- External rack.js file -->
+  <script type="text/javascript" src="rack.js"></script>
+
+
+   <!-- Firebase configuration available in Firebase console -> Project overview -> Project settings -> CDN -->
+  <script type="module">
+    const firebaseConfig = {
+      apiKey: "AIzaSyBQKoyac1OmQzPgZjukasle11eJCKEGORI",
+      authDomain: "marble-bd68e.firebaseapp.com",
+      databaseURL: "https://marble-bd68e-default-rtdb.firebaseio.com",
+      projectId: "marble-bd68e",
+      storageBucket: "marble-bd68e.appspot.com",
+      messagingSenderId: "435661317380",
+      appId: "1:435661317380:web:9094ca994b2e52000cdc51",
+      measurementId: "G-18H3KS53CS",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Calling rack_display function from external
+    rack_dis();
+    
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js "></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+    
+</body>
+
+</html>
